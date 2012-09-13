@@ -32,5 +32,17 @@
     next(e);
   }
 
+ var fields = document.querySelectorAll('input[type="text"], textarea');
+     fields = Array.prototype.slice.apply(fields);
+ fields.forEach(function(field){
+  field.addEventListener('focus', function(){
+    document.removeEventListener('keypress', prevOrNext);
+  });
+
+  field.addEventListener('blur', function(){
+    document.addEventListener('keypress', prevOrNext);
+  });
+ });
+
   document.addEventListener("keypress", prevOrNext);
 })()
