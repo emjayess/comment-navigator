@@ -18,5 +18,19 @@
     window.scroll( 0, findOffset( comments[current] ) );
   }
 
-  document.addEventListener("keypress", next);
+  function prev(e){
+    if( String.fromCharCode(e.which) !== "C" ) return;
+
+    current--;
+    if( current < 0 ) current = comments.length - 1;
+
+    window.scroll( 0, findOffset( comments[current] ) );
+  }
+
+  function prevOrNext(e){
+    prev(e);
+    next(e);
+  }
+
+  document.addEventListener("keypress", prevOrNext);
 })()
