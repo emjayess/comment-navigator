@@ -1,48 +1,33 @@
-(function(){
-  var comments, current;
+(function(d, w, undefined){
+  var comments = d.querySelectorAll('.comment-header'), current = -1;
 
-  comments = document.querySelectorAll('.comment-header');
-  current = -1;
+  function move(e, dir) {
+    switch (dir) {
 
-  function findOffset(obj) {
-    var box = obj.getBoundingClientRect();
-    return box.top + window.pageYOffset;
+      case 'next':
+        current++;
+        if ( current > comments.length - 1 ) current = 0;
+        break;
+
+      case 'prev':
+        current--;
+        if ( current < 0 ) current = comments.length - 1;
+        break;
+    }
+
+    w.scroll(0,
+      comments[current]
+        .getBoundingClientRect()
+        .top + w.pageYOffset
+    );
   }
 
-  function next(e){
-    if( String.fromCharCode(e.which) !== "c" ) return;
+  d.addEventListener('keypress', function(e) {
+    var _c = String.fromCharCode(e.which);
 
-    current++;
-    if( current > comments.length - 1 ) current = 0;
+    // do nothing in these cases
+    if ((_c !== 'c' && _c !== 'C') || (e.target.nodeName == 'TEXTAREA')) return;
 
-    window.scroll( 0, findOffset( comments[current] ) );
-  }
-
-  function prev(e){
-    if( String.fromCharCode(e.which) !== "C" ) return;
-
-    current--;
-    if( current < 0 ) current = comments.length - 1;
-
-    window.scroll( 0, findOffset( comments[current] ) );
-  }
-
-  function prevOrNext(e){
-    prev(e);
-    next(e);
-  }
-
- var fields = document.querySelectorAll('input[type="text"], textarea');
-     fields = Array.prototype.slice.apply(fields);
- fields.forEach(function(field){
-  field.addEventListener('focus', function(){
-    document.removeEventListener('keypress', prevOrNext);
+    move(e, (_c == 'c') ? 'next' : 'prev');
   });
-
-  field.addEventListener('blur', function(){
-    document.addEventListener('keypress', prevOrNext);
-  });
- });
-
-  document.addEventListener("keypress", prevOrNext);
-})()
+}(document, window))
