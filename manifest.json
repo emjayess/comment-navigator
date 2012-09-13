@@ -1,0 +1,12 @@
+{
+  "name": "Github Comment Navigator",
+  "version": "0.1",
+  "manifest_version": 1,
+  "description": "Quickly navigate to comments when viewing code changes",
+  "content_scripts": [
+    {
+      "matches" : ["https://github.com/*/pull/*"],
+      "js" : ["comment.js"]
+    }
+  ]
+}
