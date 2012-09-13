@@ -12,4 +12,5 @@ Chrome extension to quickly navigate to comments when viewing a pull request's c
 
 ### Usage
 
-Press 'c' when viewing a pull request to focus the next comment.
+Press 'c' when viewing a pull request or commit to focus the next comment. Hold SHIFT when pressing 'c' to go to the
+previous commit.
