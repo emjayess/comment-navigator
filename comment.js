@@ -1,7 +1,7 @@
 (function(){
   var comments, current;
 
-  comments = document.querySelectorAll('.commit-comment-header');
+  comments = document.querySelectorAll('.comment-header');
   current = -1;
 
   function findOffset(obj) {
