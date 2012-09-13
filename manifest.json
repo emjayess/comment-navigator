@@ -5,7 +5,10 @@
   "description": "Quickly navigate to comments when viewing code changes",
   "content_scripts": [
     {
-      "matches" : ["https://github.com/*/pull/*"],
+      "matches" : [
+        "https://github.com/*/pull/*",
+        "https://github.com/*/commit/*"
+      ],
       "js" : ["comment.js"]
     }
   ]
