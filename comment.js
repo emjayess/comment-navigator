@@ -1,7 +1,8 @@
 (function(d, w, undefined){
-  var comments = d.querySelectorAll('.comment'), current = -1;
+  var comments = d.getElementsByClassName('comment'), current = -1;
 
   function move(dir) {
+
     switch (dir) {
 
       case 'next':
@@ -14,12 +15,6 @@
         if ( current < 0 ) current = comments.length - 1;
         break;
     }
-
-    w.scroll(0,
-      comments[current]
-        .getBoundingClientRect()
-        .top + w.pageYOffset
-    );
 
     d.location.hash = '#' + comments[current].id;
   }
