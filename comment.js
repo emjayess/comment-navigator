@@ -1,5 +1,5 @@
 (function(d, w, undefined){
-  var comments = d.querySelectorAll('.comment-header'), current = -1;
+  var comments = d.querySelectorAll('.comment'), current = -1;
 
   function move(dir) {
     switch (dir) {
@@ -20,6 +20,8 @@
         .getBoundingClientRect()
         .top + w.pageYOffset
     );
+
+    d.location.hash = '#' + comments[current].id;
   }
 
   d.addEventListener('keypress', function(e) {
