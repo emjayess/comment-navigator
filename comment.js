@@ -1,7 +1,7 @@
 (function(d, w, undefined){
   var comments = d.querySelectorAll('.comment-header'), current = -1;
 
-  function move(e, dir) {
+  function move(dir) {
     switch (dir) {
 
       case 'next':
@@ -28,6 +28,6 @@
     // do nothing in these cases
     if ((_c !== 'c' && _c !== 'C') || (e.target.nodeName == 'TEXTAREA')) return;
 
-    move(e, (_c == 'c') ? 'next' : 'prev');
+    move((_c == 'c') ? 'next' : 'prev');
   });
 }(document, window))
